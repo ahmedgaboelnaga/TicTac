@@ -38,7 +38,7 @@ void computerMove(char *spaces, char computer){
     } while (spaces[move] != ' ');
     spaces[move] = computer;
 }
-bool checkWinner(char *spaces, char player, char computer){
+bool checkWinner(char *spaces, char player){
     if (spaces[0] != ' ' && spaces[0] == spaces[1] && spaces[1] == spaces[2]){
         if (spaces[0] == player){
             std::cout << "* You Won *\n";
@@ -46,6 +46,12 @@ bool checkWinner(char *spaces, char player, char computer){
             std::cout << "! You Lose !\n";
         }
     } else if (spaces[0] != ' ' && spaces[0] == spaces[3] && spaces[3] == spaces[6]){
+        if (spaces[0] == player){
+            std::cout << "* You Won *\n";
+        } else {
+            std::cout << "! You Lose !\n";
+        }
+    } else if (spaces[0] != ' ' && spaces[0] == spaces[4] && spaces[4] == spaces[8]){
         if (spaces[0] == player){
             std::cout << "* You Won *\n";
         } else {
@@ -107,7 +113,7 @@ int main(){
     {
         playerMove(spaces, player);
         drawBoard(spaces);
-        if (checkWinner(spaces, player, computer)){
+        if (checkWinner(spaces, player)){
         running = false;
         break;
         } else if (checkTie(spaces)){
@@ -119,7 +125,7 @@ int main(){
 
         computerMove(spaces, computer);
         drawBoard(spaces);
-        if (checkWinner(spaces, player, computer)){
+        if (checkWinner(spaces, player)){
             running = false;
             break;
         } else if (checkTie(spaces)){
